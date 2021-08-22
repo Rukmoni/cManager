@@ -1,15 +1,32 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React,{useEffect} from 'react';
+import {View, Text, StyleSheet,ActivityIndicator} from 'react-native';
+import{useDispatch, useSelector} from 'react-redux';
+import {getPostsfromApi} from '../store/postSlice';
 
-import {data} from '../mockData/_postData';
+
 
 const HomeScreen = () => {
-  console.log('data', data);
+    const dispatch=useDispatch();
+    const postsState=useSelector((state)=>state.posts);
+    useEffect(()=>{
+       dispatch(getPostsfromApi());
+
+    },[])
+ 
   return (
-    <View>
-      <Text>HomeScreen</Text>
+    <View style={styles.container}>
+      <Text>New HomeScreen</Text>
     </View>
   );
 };
+
+const styles=StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor:'yellow',
+        justifyContent:'center',
+        alignItems:'center'
+    }
+})
 
 export default HomeScreen;
