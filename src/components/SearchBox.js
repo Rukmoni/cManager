@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   View,
-  Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
@@ -14,23 +13,22 @@ const SearchBox = ({searchString, onSearch}) => {
       <TouchableOpacity
         style={{paddingRight: 12, paddingVertical: 8}}
         onPress={() => {}}>
-        {/* <Image source={require('../../../../assets/img/search.png')} /> */}
+        <Image source={require('../assets/img/search.png')} />
       </TouchableOpacity>
       <TextInput
         value={searchString}
         onChangeText={text => onSearch(text)}
         multiline
-        placeholder={'Order ID, mobile number or a name…'}
+        placeholder={'user name, email or body text…'}
         placeholderTextColor={{color: '#9B9B9B'}}
         style={styles.textInput}
       />
       {!!searchString && (
-        <TouchableOpacity
-          style={styles.cancelBtn}>
-          {/*  <Image
-            source={require('../../../../assets/img/times-circle.png')}
-            style={{height: RFValue(14), width: RFValue(14)}}
-          /> */}
+        <TouchableOpacity style={styles.cancelBtn} onPress={()=>onSearch('')}>
+          <Image
+            source={require('../assets/img/times-circle.png')}
+            style={{height: 14, width: 14}}
+          />
         </TouchableOpacity>
       )}
     </View>
@@ -45,9 +43,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth:1,
-    borderColor:'gray',
-    paddingVertical:10
+    borderWidth: 1,
+    borderColor: 'gray',
+    paddingVertical: 10,
   },
   textInput: {
     flex: 1,
