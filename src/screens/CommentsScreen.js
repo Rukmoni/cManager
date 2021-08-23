@@ -49,7 +49,6 @@ const CommentsScreen = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'yellow',
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical:20,
