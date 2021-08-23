@@ -5,21 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Image
+  Image,
 } from 'react-native';
 
-const SearchBox = ({searchString,onSearch}) => {
+const SearchBox = ({searchString, onSearch}) => {
   return (
-    <View
-      style={{
-        paddingHorizontal: 12,
-        backgroundColor: '#FFF',
-        flexDirection: 'row',
-        marginHorizontal: 20,
-        borderRadius: 8,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}>
+    <View style={styles.content}>
       <TouchableOpacity
         style={{paddingRight: 12, paddingVertical: 8}}
         onPress={() => {}}>
@@ -31,12 +22,12 @@ const SearchBox = ({searchString,onSearch}) => {
         multiline
         placeholder={'Order ID, mobile number or a name…'}
         placeholderTextColor={{color: '#9B9B9B'}}
-        style={{flex: 1, padding: 6}}
+        style={styles.textInput}
       />
       {!!searchString && (
         <TouchableOpacity
-          style={{paddingLeft: 20, paddingVertical: 12, paddingRight: 0}}>
-         {/*  <Image
+          style={styles.cancelBtn}>
+          {/*  <Image
             source={require('../../../../assets/img/times-circle.png')}
             style={{height: RFValue(14), width: RFValue(14)}}
           /> */}
@@ -45,5 +36,27 @@ const SearchBox = ({searchString,onSearch}) => {
     </View>
   );
 };
-
+const styles = StyleSheet.create({
+  content: {
+    paddingHorizontal: 12,
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    borderRadius: 8,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderWidth:1,
+    borderColor:'gray',
+    paddingVertical:10
+  },
+  textInput: {
+    flex: 1,
+    padding: 6,
+  },
+  cancelBtn: {
+    paddingLeft: 20,
+    paddingVertical: 12,
+    paddingRight: 0,
+  },
+});
 export default SearchBox;
