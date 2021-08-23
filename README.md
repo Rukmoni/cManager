@@ -5,6 +5,6 @@ Comments Manager with Search Filters developed for technical Assesments. This Ap
 ## ScreenShots
 
 <div align="center">
-    <img src="/src/assets/screenshot1.png" width="200px"</img> 
+    <img src="/src/assets/screenshots/screenshot1.png" width="200px"</img> 
      <img src="/src/assets/screenshot2.png" width="200px"</img> 
 </div>
