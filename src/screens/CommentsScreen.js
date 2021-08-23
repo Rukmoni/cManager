@@ -12,9 +12,9 @@ const CommentsScreen = props => {
   const [post,setPost]=useState(null);
   const [searchString, setSearchString] = useState('');
   async function fetchComments() {
-    let postInfo=await getPostInfo();
+    let postInfo=await getPostInfo(1);
     setPost(postInfo);
-    let response = await getComments();
+    let response = await getComments(1);
     if (response) {
       console.log('response', response);
       setComments(response);
