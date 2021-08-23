@@ -4,12 +4,13 @@ import {useNavigation} from '@react-navigation/native';
 const PostRenderItem = ({post}) => {
   const navigation = useNavigation();
   const {title, body, id} = post.item;
-  console.log('PostList', post);
+  
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('Comments')}
       style={styles.card}>
       <Text style={styles.title}>{title}</Text>
+      <Text style={styles.info}>{body}</Text>
     </TouchableOpacity>
   );
 };
@@ -57,11 +58,19 @@ const styles = StyleSheet.create({
     elevation: 5,
     paddingHorizontal: 16,
     paddingVertical: 12,
+    borderLeftWidth:4,
+    borderLeftColor:'#33A5CD'
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
+    
+    
   },
+  body:{
+    fontSize:12,
+    color:'gray'
+  }
 });
 
 export default PostsList;
