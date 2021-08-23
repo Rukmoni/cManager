@@ -1,30 +1,46 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getPostsfromApi} from '../store/postSlice';
-import PostsList from '../components/PostsList';
+import {getComments} from '../services/PostService';
+import {search} from '../utils/search';
+import CommentsList from '../components/CommentsList';
+import SearchBox from '../components/SearchBox';
+const CommentsScreen = props => {
+  const [loading, setLoading] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [searchString, setSearchString] = useState('');
+  async function fetchComments() {
+    let response = await getComments();
+    if (response) {
+      console.log('response', response);
+      setComments(response);
+      setFiltered(response);
+      setLoading(false);
+    }
+  }
 
-const CommentsScreen = (props) => {
-  const dispatch = useDispatch();
-  const postsState = useSelector(state => state.posts);
-  const [LoadingState, setLoadingState] = useState('idle');
-  const [posts, setPosts] = useState([]);
   useEffect(() => {
+    setLoading(true);
+    fetchComments();
     //dispatch(getPostsfromApi());
   }, []);
 
-  useEffect(() => {
-    setLoadingState(postsState.loading);
-    setPosts(postsState.posts);
-    console.log(postsState);
-  }, [postsState]);
+  const onSearch = str => {
+    console.log('onSearch');
+    setSearchString(str);
+
+    let filteredData = search(comments, str);
+    setFiltered(filteredData);
+  };
 
   return (
     <View style={styles.container}>
-      {LoadingState === 'fullfilled' ? (
-       <View><Text>Comments</Text></View>
+      <SearchBox searchString={searchString} onSearch={onSearch} />
+      {filtered.length > 0 ? (
+        <CommentsList data={filtered} />
       ) : (
-        <View><Text>Comments</Text></View>
+        <ActivityIndicator />
       )}
     </View>
   );

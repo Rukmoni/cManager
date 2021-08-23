@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {getData} from '../mockData/_postData';
 export async function getPosts(){
     
@@ -10,4 +11,16 @@ export async function getPosts(){
     catch(error){
         console.log("Error")
     } 
+}
+
+export async function getComments(){
+  
+    try{
+       const results=await axios.get("https://jsonplaceholder.typicode.com/comments?postId=1");
+       console.log("getData",results);
+       return results.data; 
+   }
+   catch(error){
+       console.log("Error")
+   } 
 }
