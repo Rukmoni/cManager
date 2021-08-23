@@ -4,27 +4,27 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getPostsfromApi} from '../store/postSlice';
 import PostsList from '../components/PostsList';
 
-const HomeScreen = () => {
+const CommentsScreen = (props) => {
   const dispatch = useDispatch();
   const postsState = useSelector(state => state.posts);
   const [LoadingState, setLoadingState] = useState('idle');
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    dispatch(getPostsfromApi());
+    //dispatch(getPostsfromApi());
   }, []);
 
   useEffect(() => {
     setLoadingState(postsState.loading);
     setPosts(postsState.posts);
-   
+    console.log(postsState);
   }, [postsState]);
 
   return (
     <View style={styles.container}>
-      {posts.length>0 ? (
-        <PostsList data={posts}/>
+      {LoadingState === 'fullfilled' ? (
+       <View><Text>Comments</Text></View>
       ) : (
-        <ActivityIndicator />
+        <View><Text>Comments</Text></View>
       )}
     </View>
   );
@@ -33,10 +33,10 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    backgroundColor: 'yellow',
     justifyContent: 'center',
     alignItems: 'center',
   },
 });
 
-export default HomeScreen;
+export default CommentsScreen;

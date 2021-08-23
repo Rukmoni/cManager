@@ -1,9 +1,11 @@
 import React from 'react';
-import { View,Text,StyleSheet,FlatList } from 'react-native';
+import { View,Text,StyleSheet,FlatList,TouchableOpacity } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 const PostRenderItem=({post})=>{
+    const navigation=useNavigation();
     const {title,body,id}=post.item;
     console.log("PostList",post)
-    return(<View style={styles.card}><Text style={styles.title}>{title}</Text></View>)
+    return(<TouchableOpacity onPress={()=>navigation.navigate("Comments")} style={styles.card}><Text style={styles.title}>{title}</Text></TouchableOpacity>)
 
 }
 const PostsList=({data})=>{
